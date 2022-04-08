@@ -1,19 +1,30 @@
 import React, { useState } from "react";
 import Users from "./components/users";
 import SearchStatus from "./components/searchStatus";
-import api from "./components/api";
+import Pagination from "./components/pagination";
+import api from "./api";
+import { paginate } from "./utils/paginate";
 
 function App() {
   const [users, setUsers] = useState(api.users.fetchAll());
+  const [currentPage, setCurrentPage] = useState(1);
 
   function handleUsers(userId) {
     const newUsers = users.filter((tag) => tag._id !== userId);
     setUsers(newUsers);
   }
 
-  return users.length !== 0 ? (
+  const count = users.length;
+  const pageSize = 4;
+  const handlePageChange = (pageIndex) => {
+    setCurrentPage(pageIndex);
+  };
+
+  const userCrop = paginate(users, currentPage, pageSize);
+
+  return count !== 0 ? (
     <>
-      <SearchStatus length={users.length} />
+      <SearchStatus length={count} />
       <table className="table">
         <thead>
           <tr>
@@ -27,13 +38,19 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          <Users users={users} deleteUser={handleUsers} />
+          <Users users={users} deleteUser={handleUsers} userCrop={userCrop} />
         </tbody>
       </table>
+      <Pagination
+        itemsCount={count}
+        pageSize={pageSize}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+      />
     </>
   ) : (
     <>
-      <SearchStatus length={users.length} />
+      <SearchStatus length={count} />
     </>
   );
 }
