@@ -1,8 +1,9 @@
-import React from "react";
+import React from 'react'
+import PropTypes from 'prop-types'
 
 const Qualities = ({ qualities }) => {
-  function badgeColor(el) {
-    return `badge mx-2 bg-${el}`;
+  function badgeColor (el) {
+    return `badge mx-2 bg-${el}`
   }
 
   return (
@@ -13,7 +14,11 @@ const Qualities = ({ qualities }) => {
         </span>
       ))}
     </>
-  );
-};
+  )
+}
 
-export default Qualities;
+Qualities.propTypes = {
+  qualities: PropTypes.array
+}
+
+export default Qualities

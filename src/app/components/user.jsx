@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 
-import Qualities from "./qualities";
-import Bookmark from "./bookmark";
+import Qualities from './qualities'
+import Bookmark from './bookmark'
 
 const User = (props) => {
-  const [isActive, setActive] = useState("false");
+  const [isActive, setActive] = useState('false')
 
   const handleBookmark = () => {
-    setActive(!isActive);
-  };
+    setActive(!isActive)
+  }
 
   return (
     <>
@@ -39,6 +40,16 @@ const User = (props) => {
         </td>
       </tr>
     </>
-  );
-};
-export default User;
+  )
+}
+
+User.propTypes = {
+  _id: PropTypes.string,
+  name: PropTypes.string,
+  qualities: PropTypes.array,
+  profession: PropTypes.object,
+  completedMeetings: PropTypes.number,
+  rate: PropTypes.number,
+  onDelete: PropTypes.func
+}
+export default User
