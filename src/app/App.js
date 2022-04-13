@@ -31,12 +31,8 @@ function App () {
 
   const userCrop = paginate(users, currentPage, pageSize)
 
-  if (userCrop.length === 0) {
+  if (userCrop.length === 0 && currentPage > 1) {
     setCurrentPage(currentPage - 1)
-
-    if (currentPage === 1) {
-      setCurrentPage(1)
-    }
   }
 
   return count > 0
