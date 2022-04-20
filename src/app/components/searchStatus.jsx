@@ -2,13 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const SearchStatus = ({ length }) => {
-  function formatCount () {
+  const formatCount = () => {
     let classes = 'badge mx-2 '
     classes += length === 0 ? 'bg-danger' : 'bg-primary'
     return classes
   }
 
-  function amountUserText () {
+  const amountUserText = () => {
     const lengthUsers = length
 
     if (lengthUsers > 1 && lengthUsers < 5) {

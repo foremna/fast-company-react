@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Qualities = ({ qualities }) => {
-  function badgeColor (el) {
+  const badgeColor = (el) => {
     return `badge mx-2 bg-${el}`
   }
 
