@@ -1,11 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { badgeColor } from '../utils/badgeColor'
 
 const Qualities = ({ qualities }) => {
-  const badgeColor = (el) => {
-    return `badge mx-2 bg-${el}`
-  }
-
   return (
     <>
       {qualities.map((quality) => (

@@ -12,13 +12,14 @@ module.exports = {
     sourceType: 'module'
   },
   plugins: ['react'],
-  rules: {
-    indent: ['error', 2],
-    semi: ['error', 'never'],
-    quotes: ['error', 'single'],
+  'rules': {
+    'indent': ['error', 2],
+    'semi': ['error', 'never'],
+    'quotes': ['error', 'single'],
     "space-before-function-paren": ["error", {
       "anonymous": "always",
       "named": "never"
     }],
+    'no-duplicate-imports': 'off'
   }
 }

@@ -10,7 +10,7 @@ import GroupList from '../components/groupList'
 import UserTable from '../components/usersTable'
 
 const Users = () => {
-  const [users, setUsers] = useState(api.users.fetchAll())
+  const [users, setUsers] = useState(false)
   const [professions, setProfession] = useState(api.professions.fetchAll())
   const [currentPage, setCurrentPage] = useState(1)
   const [selectedProf, setSelectedProf] = useState()
@@ -66,52 +66,61 @@ const Users = () => {
     setCurrentPage(currentPage - 1)
   }
 
-  return count > 0
-    ? (
-      <>
-        <SearchStatus length={count} />
-        <div className="d-flex">
-          {professions && (
-            <div className="d-flex flex-column flex-shrink-0 p-3">
-              <GroupList
-                items={professions}
-                selectedItem={selectedProf}
-                onItemSelect={handleProfessionalsSelect}
-              />
-              <button className="btn btn-secondary m-2" onClick={clearFiltered}>
-              Clear
-              </button>
-            </div>
-          )}
-          <div className="d-flex flex-column">
-            <table className="table">
-              <UserTable
-                handleUsers={handleUsers}
-                users={userCrop}
-                onSort={handleSort}
-                onDelete={handleUsers}
-                selectedSort={sortBy}
-              />
-            </table>
-            <div className="d-flex justify-content-center">
-              <Pagination
-                itemsCount={count}
-                pageSize={pageSize}
-                currentPage={currentPage}
-                onPageChange={handlePageChange}
-                goToPrevPage={goToPrevPage}
-                goToNextPage={goToNextPage}
-              />
-            </div>
-          </div>
-        </div>
-      </>
-    )
-    : (
-      <>
-        <SearchStatus length={count} />
-      </>
-    )
+  return (
+    <>
+      {users
+        ? (
+          <>
+            <SearchStatus length={users.length} />
+            {users.length > 0
+              ? (
+                <div className="d-flex">
+                  {professions && (
+                    <div className="d-flex flex-column flex-shrink-0 p-3">
+                      <GroupList
+                        items={professions}
+                        selectedItem={selectedProf}
+                        onItemSelect={handleProfessionalsSelect}
+                      />
+                      <button
+                        className="btn btn-secondary m-2"
+                        onClick={clearFiltered}
+                      >
+                    Clear
+                      </button>
+                    </div>
+                  )}
+                  <div className="d-flex flex-column">
+                    <table className="table">
+                      <UserTable
+                        handleUsers={handleUsers}
+                        users={userCrop}
+                        onSort={handleSort}
+                        onDelete={handleUsers}
+                        selectedSort={sortBy}
+                      />
+                    </table>
+                    <div className="d-flex justify-content-center">
+                      <Pagination
+                        itemsCount={count}
+                        pageSize={pageSize}
+                        currentPage={currentPage}
+                        onPageChange={handlePageChange}
+                        goToPrevPage={goToPrevPage}
+                        goToNextPage={goToNextPage}
+                      />
+                    </div>
+                  </div>
+                </div>
+              )
+              : null}
+          </>
+        )
+        : (
+          <h3>Loading users all..</h3>
+        )}
+    </>
+  )
 }
 
 export default Users
