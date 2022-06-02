@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const SearchStatus = ({ length }) => {
   const formatCount = () => {
-    let classes = 'badge mx-2 '
+    let classes = 'badge '
     classes += length === 0 ? 'bg-danger' : 'bg-primary'
     return classes
   }
