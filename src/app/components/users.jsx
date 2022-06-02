@@ -32,6 +32,7 @@ const Users = () => {
 
   const handleProfessionalsSelect = (item) => {
     setSelectedProf(item)
+    setSearch('')
   }
 
   const handleSort = (item) => {
@@ -72,72 +73,77 @@ const Users = () => {
 
   const handleChange = ({ target }) => {
     setSearch(target.value)
+    setSelectedProf()
   }
 
   return (
     <>
-      {users ? (
-        <>
-          <SearchStatus length={users.length} />
-          <div className="input-group flex-nowrap mb-2">
-            <span className="input-group-text">
-              <i className="bi bi-search"></i>
-            </span>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Search"
-              aria-label="Search"
-              onChange={handleChange}
-              value={search}
-            />
-          </div>
-          {users.length > 0 ? (
-            <div className="d-flex">
-              {professions && (
-                <div className="d-flex flex-column flex-shrink-0">
-                  <GroupList
-                    items={professions}
-                    selectedItem={selectedProf}
-                    onItemSelect={handleProfessionalsSelect}
-                  />
-                  <button
-                    className="btn btn-secondary m-2"
-                    onClick={clearFiltered}
-                  >
-                    Clear
-                  </button>
-                </div>
-              )}
-              <div className="d-flex flex-column w-100 ms-2">
-                <table className="table">
-                  <UserTable
-                    handleUsers={handleUsers}
-                    users={userCrop}
-                    onSort={handleSort}
-                    onDelete={handleUsers}
-                    selectedSort={sortBy}
-                  />
-                </table>
-                <div className="d-flex justify-content-center">
-                  {foundedUsers.length > 4 && (
-                    <Pagination
-                      itemsCount={count}
-                      pageSize={pageSize}
-                      currentPage={currentPage}
-                      onPageChange={handlePageChange}
-                      goToPrevPage={goToPrevPage}
-                      goToNextPage={goToNextPage}
-                    />
-                  )}
-                </div>
-              </div>
+      {users
+        ? (
+          <>
+            <SearchStatus length={users.length} />
+            <div className="input-group flex-nowrap mb-2">
+              <span className="input-group-text">
+                <i className="bi bi-search"></i>
+              </span>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Search"
+                aria-label="Search"
+                onChange={handleChange}
+                value={search}
+              />
             </div>
-          ) : null}
-        </>
-      ) : (
-        <h3>Loading users all..</h3>
-      )}
+            {users.length > 0
+              ? (
+                <div className="d-flex">
+                  {professions && (
+                    <div className="d-flex flex-column flex-shrink-0">
+                      <GroupList
+                        items={professions}
+                        selectedItem={selectedProf}
+                        onItemSelect={handleProfessionalsSelect}
+                      />
+                      <button
+                        className="btn btn-secondary m-2"
+                        onClick={clearFiltered}
+                      >
+                    Clear
+                      </button>
+                    </div>
+                  )}
+                  <div className="d-flex flex-column w-100 ms-2">
+                    <table className="table">
+                      <UserTable
+                        handleUsers={handleUsers}
+                        users={userCrop}
+                        onSort={handleSort}
+                        onDelete={handleUsers}
+                        selectedSort={sortBy}
+                      />
+                    </table>
+                    <div className="d-flex justify-content-center">
+                      {foundedUsers.length > 4 && (
+                        <Pagination
+                          itemsCount={count}
+                          pageSize={pageSize}
+                          currentPage={currentPage}
+                          onPageChange={handlePageChange}
+                          goToPrevPage={goToPrevPage}
+                          goToNextPage={goToNextPage}
+                        />
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )
+              : null}
+          </>
+        )
+        : (
+          <h3>Loading users all..</h3>
+        )}
     </>
   )
 }
