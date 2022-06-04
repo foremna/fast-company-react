@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { badgeColor } from '../utils/badgeColor'
+import { badgeColor } from '../../../utils/badgeColor'
 
-const User = ({ api, userId }) => {
+const UserPage = ({ api, userId }) => {
   const [usersId, setUsersId] = useState(false)
 
   useEffect(() => {
@@ -28,9 +28,9 @@ const User = ({ api, userId }) => {
     )
 }
 
-User.propTypes = {
+UserPage.propTypes = {
   api: PropTypes.object.isRequired,
   userId: PropTypes.string.isRequired
 }
 
-export default User
+export default UserPage

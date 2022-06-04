@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Table from './table'
-import Bookmark from './bookmark'
+import Table from '../common/table/table'
+import Bookmark from '../common/bookmark'
 import Qualities from './qualities'
 
 const UserTable = ({ handleUsers, onSort, users, selectedSort, onDelete }) => {

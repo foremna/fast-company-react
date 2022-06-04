@@ -20,6 +20,7 @@ module.exports = {
       "anonymous": "always",
       "named": "never"
     }],
-    'no-duplicate-imports': 'off'
+    "prefer-const": ['off'],
+    'no-duplicate-imports': ['off']
   }
 }
