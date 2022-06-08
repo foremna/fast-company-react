@@ -21,6 +21,7 @@ module.exports = {
       "named": "never"
     }],
     "prefer-const": ['off'],
-    'no-duplicate-imports': ['off']
+    'no-duplicate-imports': ['off'],
+    'multiline-ternary': ['off']
   }
 }

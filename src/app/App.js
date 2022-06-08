@@ -16,7 +16,7 @@ function App() {
         <Switch>
           <Route path='/' exact render={(props) => <Main {...props} />} />
           <Route path='/login/:type?' render={(props) => <Login {...props} />} />
-          <Route path='/users/:userId?' render={(props) => <Users {...props} />} />
+          <Route path='/users/:userId?/:edit?' render={(props) => <Users {...props} />} />
         </Switch>
 
       </BrowserRouter>

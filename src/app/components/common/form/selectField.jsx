@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const SelectField = ({
+  key,
   label,
   value,
   name,
@@ -12,17 +13,14 @@ const SelectField = ({
 }) => {
   const optionsArray =
     !Array.isArray(options) && typeof options === 'object'
-      ? Object.keys(options).map((optionName) => ({
-        name: options[optionName].name,
-        value: [optionName]._id
-      }))
+      ? Object.values(options)
       : options
 
   const handleChange = ({ target }) => {
     onChange({ name: [target.name], value: target.value })
   }
   return (
-    <div className="mb-3">
+    <div className="mb-3" key={key}>
       <label htmlFor={name} className="form-label">
         {label}
       </label>
@@ -49,6 +47,7 @@ const SelectField = ({
 }
 
 SelectField.propTypes = {
+  key: PropTypes.string,
   label: PropTypes.string,
   name: PropTypes.string,
   value: PropTypes.string,

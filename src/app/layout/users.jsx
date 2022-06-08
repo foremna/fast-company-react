@@ -5,12 +5,23 @@ import api from '../api'
 
 import UserPage from '../components/page/userPage'
 import UsersListPage from '../components/page/usersListPage'
+import Edit from './edit'
 
 const Users = () => {
-  const { userId } = useParams()
+  const { userId, edit } = useParams()
 
   return (
-    <>{userId ? <UserPage api={api} userId={userId} /> : <UsersListPage />}</>
+    <>
+      {userId ? (
+        edit ? (
+          <Edit />
+        ) : (
+          <UserPage api={api} userId={userId} />
+        )
+      ) : (
+        <UsersListPage />
+      )}
+    </>
   )
 }
 
