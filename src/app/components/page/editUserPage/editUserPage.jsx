@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
 import { useParams, useHistory } from 'react-router-dom'
 
 import api from '../../../api'
@@ -11,9 +10,9 @@ import MultiSelectField from '../../common/form/multiSelectField'
 import RadioField from '../../common/form/radioField'
 
 const EditUserPage = () => {
+  const { userId } = useParams()
+  const history = useHistory()
   const [isLoading, setIsLoading] = useState(false)
-  const [professions, setProfession] = useState([])
-  const [qualities, setQualities] = useState([])
   const [data, setData] = useState({
     name: '',
     email: '',
@@ -21,14 +20,16 @@ const EditUserPage = () => {
     sex: 'male',
     qualities: []
   })
+  const [professions, setProfession] = useState([])
+  const [qualities, setQualities] = useState([])
   const [errors, setErrors] = useState({})
-  const history = useHistory()
-  const { userId } = useParams()
 
-  const getProfessionalById = (id) => {
+  const getProfessionById = (id) => {
     for (const prof in professions) {
-      const profData = professions[prof]
-      if (profData._id === id) return profData
+      if (prof.value === id) {
+        return { _id: prof.value, name: prof.label }
+      }
+      console.log(prof)
     }
   }
 
@@ -57,7 +58,7 @@ const EditUserPage = () => {
     api.users
       .update(userId, {
         ...data,
-        profession: getProfessionalById(profession),
+        profession: getProfessionById(profession),
         qualities: getQualities(qualities)
       })
       .then((data) => history.push(`/users/${data._id}`))
@@ -161,7 +162,6 @@ const EditUserPage = () => {
         onChange={handleChange}
       />
       <SelectField
-        key={data._id}
         label="Профессии"
         value={data.profession}
         name="profession"
@@ -183,13 +183,6 @@ const EditUserPage = () => {
   ) : (
     <h3>Loading...</h3>
   )
-}
-
-EditUserPage.propTypes = {
-  label: PropTypes.string,
-  name: PropTypes.string,
-  value: PropTypes.string,
-  onChange: PropTypes.func
 }
 
 export default EditUserPage

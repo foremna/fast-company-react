@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const SelectField = ({
-  key,
   label,
   value,
   name,
@@ -20,13 +19,13 @@ const SelectField = ({
     onChange({ name: [target.name], value: target.value })
   }
   return (
-    <div className="mb-3" key={key}>
+    <div className="mb-3">
       <label htmlFor={name} className="form-label">
         {label}
       </label>
       <select
         className={`form-select ${error ? 'is-invalid' : ''}`}
-        id="validationCustom04"
+        id={name}
         name={name}
         value={value}
         onChange={handleChange}
@@ -37,7 +36,7 @@ const SelectField = ({
         {optionsArray &&
           optionsArray.map((option) => (
             <option key={option.value} value={option.value}>
-              {option.name}
+              {option.label}
             </option>
           ))}
       </select>
@@ -47,14 +46,12 @@ const SelectField = ({
 }
 
 SelectField.propTypes = {
-  key: PropTypes.string,
   label: PropTypes.string,
   name: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func,
   defaultOption: PropTypes.string,
   options: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  optionsArray: PropTypes.func,
   error: PropTypes.string
 }
 
