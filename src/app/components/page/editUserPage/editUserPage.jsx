@@ -25,7 +25,7 @@ const EditUserPage = () => {
   const [errors, setErrors] = useState({})
 
   const getProfessionById = (id) => {
-    for (const prof in professions) {
+    for (const prof of professions) {
       if (prof.value === id) {
         return { _id: prof.value, name: prof.label }
       }
@@ -53,7 +53,7 @@ const EditUserPage = () => {
     e.preventDefault()
     const isValid = validate()
     if (!isValid) return
-    const { qualities, profession } = data
+    const { profession, qualities } = data
 
     api.users
       .update(userId, {
@@ -65,12 +65,12 @@ const EditUserPage = () => {
   }
 
   const transformData = (data) => {
-    return data.map((qual) => ({ label: qual._name, value: qual._id }))
+    return data.map((qual) => ({ label: qual.name, value: qual._id }))
   }
 
   useEffect(() => {
     setIsLoading(true)
-    api.users.getById(userId).then(({ qualities, profession, ...data }) =>
+    api.users.getById(userId).then(({ profession, qualities, ...data }) =>
       setData((prevState) => ({
         ...prevState,
         ...data,
@@ -159,7 +159,7 @@ const EditUserPage = () => {
         value={data.sex}
         name="sex"
         label="Пол:"
-        onChange={handleChange}
+        // onChange={handleChange}
       />
       <SelectField
         label="Профессии"
