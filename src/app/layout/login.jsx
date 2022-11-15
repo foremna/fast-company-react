@@ -18,39 +18,37 @@ const Login = () => {
     <>
       <div className="row justify-content-center">
         <div className="col-md-4 shadow p-3">
-          {formType === 'register'
-            ? (
-              <>
-                <h3>Register</h3>
-                <RegisterForm />
-                <p>
+          {formType === 'register' ? (
+            <>
+              <h3>Register</h3>
+              <RegisterForm />
+              <p>
                 Already have account?{' '}
-                  <a
-                    className="link-primary"
-                    role="button"
-                    onClick={toggleFormType}
-                  >
+                <a
+                  className="link-primary"
+                  role="button"
+                  onClick={toggleFormType}
+                >
                   Sign in
-                  </a>
-                </p>
-              </>
-            )
-            : (
-              <>
-                <h3>Login</h3>
-                <LoginForm />
-                <p>
+                </a>
+              </p>
+            </>
+          ) : (
+            <>
+              <h3>Login</h3>
+              <LoginForm />
+              <p>
                 Dont have account?{' '}
-                  <a
-                    className="link-primary"
-                    role="button"
-                    onClick={toggleFormType}
-                  >
+                <a
+                  className="link-primary"
+                  role="button"
+                  onClick={toggleFormType}
+                >
                   Sign up
-                  </a>
-                </p>
-              </>
-            )}
+                </a>
+              </p>
+            </>
+          )}
         </div>
       </div>
     </>

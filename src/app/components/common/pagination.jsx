@@ -2,7 +2,14 @@ import React from 'react'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 
-const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage, goToPrevPage, goToNextPage }) => {
+const Pagination = ({
+  itemsCount,
+  pageSize,
+  onPageChange,
+  currentPage,
+  goToPrevPage,
+  goToNextPage
+}) => {
   const pageCount = Math.ceil(itemsCount / pageSize)
   if (pageCount === 1) return null
   const pages = _.range(1, pageCount + 1)
@@ -11,7 +18,9 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage, goToPrevP
     <nav>
       <ul className="pagination">
         <li className={'page-item' + (currentPage === 1 ? ' disabled' : '')}>
-          <a className="page-link" onClick={() => goToPrevPage(currentPage)}>Previous</a>
+          <a className="page-link" onClick={() => goToPrevPage(currentPage)}>
+            Previous
+          </a>
         </li>
         {pages.map((page) => (
           <li
@@ -23,8 +32,14 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage, goToPrevP
             </a>
           </li>
         ))}
-        <li className={'page-item' + (currentPage === pageCount ? ' disabled' : '')}>
-          <a className="page-link" onClick={() => goToNextPage(currentPage)}>Next</a>
+        <li
+          className={
+            'page-item' + (currentPage === pageCount ? ' disabled' : '')
+          }
+        >
+          <a className="page-link" onClick={() => goToNextPage(currentPage)}>
+            Next
+          </a>
         </li>
       </ul>
     </nav>

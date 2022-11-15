@@ -20,19 +20,17 @@ const SearchStatus = ({ length }) => {
     }
   }
 
-  return length !== 0
-    ? (
-      <h1>
-        <span className={formatCount()}>
-          {length} {amountUserText()}
-        </span>
-      </h1>
-    )
-    : (
-      <h1>
-        <span className={formatCount()}>{amountUserText()}</span>
-      </h1>
-    )
+  return length !== 0 ? (
+    <h1>
+      <span className={formatCount()}>
+        {length} {amountUserText()}
+      </span>
+    </h1>
+  ) : (
+    <h1>
+      <span className={formatCount()}>{amountUserText()}</span>
+    </h1>
+  )
 }
 
 SearchStatus.propTypes = {
