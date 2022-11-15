@@ -1,17 +1,17 @@
 import React from 'react'
 
+import MemoizedAvatar from './avatar'
+
 const Comment = () => {
   return (
     <div className="bg-light card-body  mb-3">
       <div className="row">
         <div className="col">
           <div className="d-flex flex-start ">
-            <img
-              src=""
-              className="rounded-circle shadow-1-strong me-3"
-              alt="avatar"
+            <MemoizedAvatar
               width="65"
               height="65"
+              classes="rounded-circle shadow-1-strong me-3"
             />
             <div className="flex-grow-1 flex-shrink-1">
               <div className="mb-4">

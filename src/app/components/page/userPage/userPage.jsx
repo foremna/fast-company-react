@@ -19,7 +19,7 @@ const UserPage = ({ api, userId }) => {
         <div className="col-md-4 mb-3">
           <UserCard data={usersId} />
           <QualitiesCard data={usersId.qualities} />
-          <MeetingsCard />
+          <MeetingsCard meetings={usersId.completedMeetings} />
         </div>
         <div className="col-md-8">
           <CommentsList />

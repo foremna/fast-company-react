@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import MemoizedAvatar from './avatar'
 
 const UserCard = ({ data }) => {
   return (
@@ -9,17 +10,17 @@ const UserCard = ({ data }) => {
           <i className="bi bi-gear"></i>
         </button>
         <div className="d-flex flex-column align-items-center text-center position-relative">
-          <img src="" className="rounded-circle" width="150" />
+          <MemoizedAvatar width="150" classes="rounded-circle" />
           <div className="mt-3">
-            <h4>UserName</h4>
-            <p className="text-secondary mb-1">Profession</p>
+            <h4>{data.name} </h4>
+            <p className="text-secondary mb-1">{data.profession.name} </p>
             <div className="text-muted">
               <i
                 className="bi bi-caret-down-fill text-primary"
                 role="button"
               ></i>
               <i className="bi bi-caret-up text-secondary" role="button"></i>
-              <span className="ms-2">Rate</span>
+              <span className="ms-2">{data.rate}</span>
             </div>
           </div>
         </div>
@@ -29,7 +30,7 @@ const UserCard = ({ data }) => {
 }
 
 UserCard.propTypes = {
-  data: PropTypes.array.isRequired
+  data: PropTypes.object.isRequired
 }
 
 export default UserCard
